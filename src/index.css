@@ -1,3 +1,112 @@
-@import 'tailwindcss/dist/base.css';
-@import 'tailwindcss/dist/components.css';
-@import 'tailwindcss/dist/utilities.css';
+@import "tailwindcss/dist/base.css";
+@import "tailwindcss/dist/components.css";
+@import "tailwindcss/dist/utilities.css";
+
+:root {
+  --lightBlue: #171a64;
+  --darkBlue: #10101d;
+  --grey: #242531;
+  --taskBlue: #191833;
+  --checker: #4052db;
+  --button: #191932;
+  --fontSize: 0.8rem;
+}
+* {
+  color: aliceblue;
+  box-sizing: border-box;
+}
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 200, "GRAD" 0, "opsz" 48;
+}
+
+body {
+  display: flex;
+  background-color: var(--darkBlue);
+  place-content: center;
+  padding-top: 10vh;
+}
+.container {
+  width: 87vw;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  place-items: center;
+}
+.input-container {
+  background-color: var(--grey);
+}
+.inputTask {
+  color: var(--button);
+  display: block;
+  padding-left: 10px;
+  width: 70vw;
+  margin: auto;
+  height: 1.5rem;
+  border-radius: 0.25rem;
+}
+.addTask {
+  display: block;
+  margin-inline-start: auto;
+  margin-right: 2rem;
+}
+.button {
+  background-color: var(--button);
+  left: 3rem;
+  display: inline;
+}
+.counter-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+form input {
+  width: fit-content;
+  border-radius: 0.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.task-counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: var(--lightBlue);
+  width: 20vw;
+  height: 20vw;
+  align-content: center;
+  align-items: center;
+  border-radius: 1rem;
+}
+.task-counter span {
+  font-size: var(--fontSize);
+  font-weight: bold;
+}
+.task-container{
+  height: auto;
+  overflow-y: scroll;
+}
+.task {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--taskBlue);
+  margin-top: 1rem;
+  height: 7vh;
+  border-radius: 0.4rem;
+}
+.task div{
+  padding-left: 1rem;
+}
+.task span {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.task input {
+  outline: 1px solid var(--checker);
+  border-radius: 3px;
+}
+.day{
+  font-weight: "900";
+  font-size: medium;
+}
