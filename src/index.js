@@ -91,7 +91,6 @@ const isCheked = (e) => {
     found.state = !found.state;
     showCounter();
     update();
-    console.log(e);
   }
 };
 
