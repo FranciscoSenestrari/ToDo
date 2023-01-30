@@ -20,7 +20,11 @@ let checkbox;
 const input = document.querySelector(".inputTask");
 let taskList = [];
 taskList = JSON.parse(localStorage.getItem("Task"));
-
+const checkEmpyLS = () => {
+  if (window.localStorage.getItem("Task") == undefined) {
+    window.localStorage.setItem("Task", "[]");
+  }
+};
 const createTask = () => {
   window.location.reload();
   if (input.value != "") {
@@ -38,11 +42,13 @@ const createTask = () => {
   }
 };
 const countTask = () => {
-  taskList.forEach((element) => {
-    if (!element.state) {
-      countEnded++;
-    } else countOnline++;
-  });
+  if (taskList !=null ) {
+    taskList.forEach((element) => {
+      if (!element.state) {
+        countEnded++;
+      } else countOnline++;
+    });
+  }
 };
 const showCounter = () => {
   countOnline = 0;
@@ -53,32 +59,34 @@ const showCounter = () => {
   taskAll.textContent = countEnded + countOnline;
 };
 const showTask = () => {
-  taskList.forEach((element) => {
-    const task = document.createElement("div");
-    const checkbox = document.createElement("input");
-    const title = document.createElement("span");
-    const span = document.createElement("span");
-    const container = document.createElement("div");
-    const buttonDelet = document.createElement("button");
+  
+    taskList.forEach((element) => {
+      const task = document.createElement("div");
+      const checkbox = document.createElement("input");
+      const title = document.createElement("span");
+      const span = document.createElement("span");
+      const container = document.createElement("div");
+      const buttonDelet = document.createElement("button");
 
-    task.className = "task";
-    task.id = element.id;
-    checkbox.type = "checkbox";
-    checkbox.checked = !element.state;
-    checkbox.dataset.id = element.id;
-    buttonDelet.dataset.id = element.id;
-    checkbox.addEventListener("change", isCheked);
-    title.textContent = element.title;
-    span.className = "material-symbols-outlined";
-    span.textContent = "delete";
-    container.appendChild(checkbox);
-    container.appendChild(title);
-    buttonDelet.appendChild(span);
-    buttonDelet.addEventListener("click", deletTask);
-    task.appendChild(container);
-    task.appendChild(buttonDelet);
-    taskContainer.appendChild(task);
-  });
+      task.className = "task";
+      task.id = element.id;
+      checkbox.type = "checkbox";
+      checkbox.checked = !element.state;
+      checkbox.dataset.id = element.id;
+      buttonDelet.dataset.id = element.id;
+      checkbox.addEventListener("change", isCheked);
+      title.textContent = element.title;
+      span.className = "material-symbols-outlined";
+      span.textContent = "delete";
+      container.appendChild(checkbox);
+      container.appendChild(title);
+      buttonDelet.appendChild(span);
+      buttonDelet.addEventListener("click", deletTask);
+      task.appendChild(container);
+      task.appendChild(buttonDelet);
+      taskContainer.appendChild(task);
+    });
+  
 };
 const update = () => {
   window.localStorage.setItem("Task", JSON.stringify(taskList));
@@ -107,10 +115,14 @@ const checkEmpy = () => {
   }
 };
 const show = () => {
-  showCounter();
-  showTask();
+  if(taskList!=null)
+  {
+    showCounter();
+    showTask();
+  }
+
   day.textContent = moment().format("[Today is]:  DD / M");
 };
-
+checkEmpyLS();
 show();
 button.addEventListener("click", createTask);
